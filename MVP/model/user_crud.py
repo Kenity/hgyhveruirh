@@ -10,8 +10,8 @@ class UserCRUD:
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
 
-        cursor.execute("INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
-                       (username, password, role))
+        cursor.execute("INSERT INTO users (username, password, role, ban) VALUES (?, ?, ?, ?)",
+                       (username, password, role, 0))
 
         connection.commit()
         connection.close()
@@ -47,3 +47,12 @@ class UserCRUD:
         cursor = connection.cursor()
 
         cursor.execute("DELETE FROM users WHERE username = ?", (username))
+
+    def ban_user(self, username):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+
+        cursor.execute("UPDATE users SET ban = 1 WHERE username = ?", (username,))
+
+        connection.commit()
+        connection.close()
