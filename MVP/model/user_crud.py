@@ -1,9 +1,9 @@
 import sqlite3
-from MVP.model.config import settings
+from MVP.cogs.find_DataBase import FindDB
 
 
 class UserCRUD:
-    def __init__(self, db_path = settings['DB_PATH']):
+    def __init__(self, db_path = FindDB().find_database_path()):
         self.db_path = db_path
 
     def create_user(self, username, password, role):

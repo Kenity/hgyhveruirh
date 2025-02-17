@@ -5,7 +5,7 @@ class LoginPRESENTER:
     def __init__(self, view):
         self.UserCRUD = UserCRUD()
         self.view = view
-        self. attempts = {}
+        self.attempts = {}
 
     def login(self, username, password):
         user = self.UserCRUD.get_user(username)
